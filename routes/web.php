@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+//使用name()方法为路由添加别名
 Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
+Route::get('/signup', 'UsersController@create')->name('signup');
