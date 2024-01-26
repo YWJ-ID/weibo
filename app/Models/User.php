@@ -43,9 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function gravatar($size = 100)
+    public function gravatar($size = '100')
     {
-//        return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=200&d=identicon';
         $hash = md5(strtolower(trim($this->attributes['email'])));
         return "https://cdn.v2ex.com/gravatar/$hash?s=$size";
     }

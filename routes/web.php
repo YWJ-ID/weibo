@@ -22,6 +22,7 @@ Route::get('/', 'StaticPagesController@home')->name('home');
 Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::get('/signup', 'UsersController@create')->name('signup');
+
 //新增的 resource 方法将遵从 RESTful 架构为用户资源生成路由。该方法接收两个参数，第一个参数为资源名称，第二个参数为控制器名称。
 Route::resource('users', 'UsersController');
 /*
@@ -33,3 +34,17 @@ Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 */
+
+//Route::get('/cache', function () {
+//    return cache('key');
+//});
+//定义限流器
+//Route::middleware(['throttle:api'])->group(function () {
+//    Route::post('/audio', function () {
+//        // ...
+//    });
+//
+//    Route::post('/video', function () {
+//        // ...
+//    });
+//});
