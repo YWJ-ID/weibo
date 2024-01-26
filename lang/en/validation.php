@@ -152,6 +152,16 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'email' => [
+            'required' => '邮箱地址不能为空！',
+            'email' => '邮箱格式错误！',
+            'unique' => '邮箱地址已被使用！',
+            'exists' => '邮箱地址不存在！',
+        ],
+        'password' => [
+            'required' => '密码不能为空！',
+            'min' => '密码长度至少为6位！',
+        ]
     ],
 
     /*
