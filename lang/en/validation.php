@@ -161,6 +161,7 @@ return [
         'password' => [
             'required' => '密码不能为空！',
             'min' => '密码长度至少为6位！',
+            'confirmed' => '密码不一致！',
         ]
     ],
 
