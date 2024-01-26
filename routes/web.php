@@ -23,3 +23,16 @@ Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::get('/signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController');
+//Route::get('/cache', function () {
+//    return cache('key');
+//});
+//定义限流器
+//Route::middleware(['throttle:api'])->group(function () {
+//    Route::post('/audio', function () {
+//        // ...
+//    });
+//
+//    Route::post('/video', function () {
+//        // ...
+//    });
+//});
