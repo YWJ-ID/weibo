@@ -34,6 +34,7 @@ class User extends Authenticatable
     ];
 
     /**
+     * $casts 属性是用来指定数据库字段使用的数据类型，这里指定了 email_verified_at 的类型为时间类型，这个类型跟默认的 created_at 和 updated_at 一致：
      * The attributes that should be cast.
      *
      * @var array<string, string>
@@ -41,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function gravatar($size = 100)
+    {
+//        return 'https://www.gravatar.com/avatar/' . md5($this->email) . '?s=200&d=identicon';
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "https://cdn.v2ex.com/gravatar/$hash?s=$size";
+    }
 }
