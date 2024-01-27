@@ -35,9 +35,11 @@ Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 */
 
-//Route::get('/cache', function () {
-//    return cache('key');
-//});
+Route::get('login', 'SessionsController@create')->name('login');//显示登录页面
+Route::post('login', 'SessionsController@store')->name('login');//创建新会话（登录）
+Route::delete('logout', 'SessionsController@destroy')->name('logout');//销毁会话（退出登录）
+
+
 //定义限流器
 //Route::middleware(['throttle:api'])->group(function () {
 //    Route::post('/audio', function () {
