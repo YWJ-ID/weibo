@@ -26,10 +26,12 @@ class UsersController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
-        $data = $request->all();
+        var_dump($request->name);
+        var_dump($request->email);
+        var_dump($request->password);
 
 //        用户模型 User::create() 创建成功后会返回一个用户对象，并包含新注册用户的所有信息。我们将新注册用户的所有信息赋值给变量 $user，并通过路由跳转来进行数据绑定。
-        $user = User::created([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
