@@ -149,8 +149,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'name' => [
+            'required' => '用户名不能为空！',
+            'min' => '用户名长度至少为6位！',
+            'max' => '用户名长度不能超过20位！',
+            'unique' => '用户名已被使用！',
         ],
         'email' => [
             'required' => '邮箱地址不能为空！',
