@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 //登录控制器
 class SessionsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     public function create()
     {
         return view('sessions.create');
@@ -23,7 +31,8 @@ class SessionsController extends Controller
 //这时如果尝试输入错误密码则会显示登录失败的提示信息
         if (Auth::attempt($credentials,$request->has('remember'))) {
             session()->flash('success', '欢迎回来！');
-            return redirect()->route('users.show', [Auth::user()]);
+            $fallback = route('users.show', Auth::user());
+            return redirect()->intended($fallback);
         } else {
             session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
 //使用 withInput() 后模板里 old('email') 将能获取到上一次用户提交的内容，这样用户就无需再次输入邮箱等内容：
