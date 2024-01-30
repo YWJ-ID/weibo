@@ -49,11 +49,12 @@ Route::delete('logout', 'SessionsController@destroy')->name('logout');//销毁�
 //    Route::get('/', 'DashboardController@index')->name('admin.dashboard'); // 访问 /admin，映射到 DashboardController 的 index 方法
 //    Route::resource('users', 'UserController'); // 创建一个资源控制器，所有路由带有前缀 /admin，例如：/admin/users/create 等
 //});
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('users', \App\Http\Controllers\UsersController::class)->except([
-        'show', 'create', 'store',
-    ]);
-});
+
+//Route::group(['middleware' => ['auth']], function () {
+//    Route::resource('users', \App\Http\Controllers\UsersController::class)->except([
+//        'show', 'create', 'store',
+//    ]);
+//});
 
 //定义限流器
 //Route::middleware(['throttle:api'])->group(function () {

@@ -23,8 +23,8 @@ class UsersController extends Controller
     //显示所有用户
     public function index()
     {
-//        $users = User::paginate(10);
-        $users = User::all();
+        $users = User::paginate(10);
+//        $users = User::all();
         return view('users.index', compact('users'));
     }
 
