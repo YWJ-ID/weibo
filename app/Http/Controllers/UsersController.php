@@ -70,6 +70,7 @@ class UsersController extends Controller
     //用户编辑页面
     public function edit(User $user)
     {
+        //现在，使用 id 为 1 的用户登录，当访问 id 为 2 的用户编辑页面 —— weibo.test/users/2/edit ，系统将会拒绝访问。
         $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
@@ -94,5 +95,14 @@ class UsersController extends Controller
         session()->flash('success', '个人资料更新成功');
 
         return redirect()->route('users.show', $user->id);
+    }
+
+    //管理员删除用户
+    public function destroy(User $user)
+    {
+        $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '用户删除成功!');
+        return back();
     }
 }
