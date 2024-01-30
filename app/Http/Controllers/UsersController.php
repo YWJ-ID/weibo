@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
+//注册页面
 class UsersController extends Controller
 {
     public function create()
@@ -17,7 +19,7 @@ class UsersController extends Controller
         return view('users.show', compact('user'));
     }
 
-        //    保存用户并且重定向
+        //保存用户并且重定向
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -41,5 +43,31 @@ class UsersController extends Controller
 //     『约定优于配置』的体现，此时 $user 是 User 模型对象的实例。route() 方法会自动获取 Model 的主键，也就是数据表 users 的主键 id，以上代码等同于：
 //      redirect()->route('users.show', [$user->id]);
         return redirect()->route('users.show', [$user]);
+    }
+
+    //用户编辑页面
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(User $user, Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            'password' => 'nullable|confirmed|min:6'
+        ]);
+
+        $data = [];
+        $data['name'] = $request->name;
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        }
+
+        $user->update($data);
+
+        session()->flash('success', '个人资料更新成功');
+
+        return redirect()->route('users.show', $user->id);
     }
 }

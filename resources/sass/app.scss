@@ -90,5 +90,16 @@ footer {
     max-width: 50px;
     border-radius: 50%;
   }
+
+  /* User edit*/
+  .gravatar_edit {
+    margin: 15px auto;
+    text-align: center;
+
+    .gravatar {
+      float: none;
+      max-width: 100px;
+    }
+  }
 }
 
