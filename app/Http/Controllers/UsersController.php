@@ -11,22 +11,37 @@ class UsersController extends Controller
 {
     public function __construct()
     {
+//        通过 except 方法来设定 指定动作 不使用 Auth 中间件进行过滤，意为 —— 除了此处指定的动作以外，所有其他动作都必须登录用户才能访问，类似于黑名单的过滤机制
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store', 'index']
+        ]);
         $this->middleware('guest', [
             'only' => ['create']
         ]);
     }
 
+    //显示所有用户
+    public function index()
+    {
+//        $users = User::paginate(10);
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    //显示创建用户的页面
     public function create()
     {
         return view('users.create');
     }
+
+    //显示用户个人信息的页面
     public function show(User $user)
     {
         //将用户对象 $user 通过 compact 方法转化为一个关联数组，并作为第二个参数传递给 view 方法，将数据与视图进行绑定。
         return view('users.show', compact('user'));
     }
 
-        //保存用户并且重定向
+    //创建用户
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -59,6 +74,7 @@ class UsersController extends Controller
         return view('users.edit', compact('user'));
     }
 
+    //更新用户资料
     public function update(User $user, Request $request)
     {
         $this->authorize('update', $user);
