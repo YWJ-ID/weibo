@@ -12070,3 +12070,30 @@ footer .status-delete-btn {
   width: -moz-max-content;
   width: max-content;
 }
+footer .stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+}
+footer .stats a {
+  float: left;
+  padding: 0 10px;
+  text-align: center;
+  width: 33%;
+  border-left: 1px solid #eee;
+  color: #33383c;
+  text-decoration: none;
+}
+footer .stats a:first-child {
+  padding-left: 0;
+  border: 0;
+}
+footer .stats a:hover {
+  text-decoration: none;
+  color: #337ab7;
+}
+footer .stats strong {
+  display: block;
+  font-size: 1.2em;
+  color: black;
+}
