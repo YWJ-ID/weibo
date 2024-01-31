@@ -50,6 +50,8 @@ Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy'
 Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');//显示用户关注的人
 Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');//显示用户粉丝
 
+Route::post('/user/followers/{user}', 'FollowersController@store')->name('followers.store');
+Route::delete('/user/followers/{user}', 'FollowersController@destroy')->name('followers.destroy');
 //使用范例
 //Route::group([
 //    'middleware' => ['auth'], // 为这个路由组应用 auth 中间件，确保只有经过身份验证的用户才能访问这些路由
