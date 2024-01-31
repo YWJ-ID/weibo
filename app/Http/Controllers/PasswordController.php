@@ -10,8 +10,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
-class PasswordController
+class PasswordController extends Controller
 {
+//针对控制器方法 showLinkRequestForm() 做了限流，一分钟内只能允许访问两次。
+    public function __construct()
+    {
+        $this->middleware('throttle:2,1',[
+            'only' => ['showLinkRequestForm'],
+        ]);
+        $this->middleware('throttle:3,10', [
+            'only' => ['sendResetLinkEmail']
+        ]);
+
+    }
+
     public function showLinkRequestForm()
     {
         return view('auth.passwords.email');
