@@ -38,8 +38,13 @@ Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy')
 Route::get('login', 'SessionsController@create')->name('login');//显示登录页面
 Route::post('login', 'SessionsController@store')->name('login');//创建新会话（登录）
 Route::delete('logout', 'SessionsController@destroy')->name('logout');//销毁会话（退出登录）
-Route::get('signup/confirm/{token}','UsersController@confirmEmail')->name('confirm_email');
+Route::get('signup/confirm/{token}','UsersController@confirmEmail')->name('confirm_email');//账号激活
 
+Route::get('password/reset',  'PasswordController@showLinkRequestForm')->name('password.request');//填写 Email 的表单
+Route::post('password/email',  'PasswordController@sendResetLinkEmail')->name('password.email');// 处理表单提交，成功的话就发送邮件，附带 Token 的链接
+
+Route::get('password/reset/{token}',  'PasswordController@showResetForm')->name('password.reset');//显示更新密码的表单，包含 token
+Route::post('password/reset',  'PasswordController@reset')->name('password.update');//对提交过来的 token 和 email 数据进行配对，正确的话更新密码
 
 //使用范例
 //Route::group([
