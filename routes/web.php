@@ -46,6 +46,7 @@ Route::post('password/email',  'PasswordController@sendResetLinkEmail')->name('p
 Route::get('password/reset/{token}',  'PasswordController@showResetForm')->name('password.reset');//显示更新密码的表单，包含 token
 Route::post('password/reset',  'PasswordController@reset')->name('password.update');//对提交过来的 token 和 email 数据进行配对，正确的话更新密码
 
+Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);//微博的创建和删除
 //使用范例
 //Route::group([
 //    'middleware' => ['auth'], // 为这个路由组应用 auth 中间件，确保只有经过身份验证的用户才能访问这些路由
