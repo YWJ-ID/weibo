@@ -12,6 +12,20 @@
 {{--            通过给 @include 方法传参，将用户数据以关联数组的形式传送到 _user_info 局部视图上。--}}
             @include('layouts._user_info', ['user' => $user])
           </section>
+          <section class="status">
+            @if ($statuses->count() > 0)
+              <ul class="list-unstyled">
+                @foreach ($statuses as $status)
+                  @include('statuses._status')
+                @endforeach
+              </ul>
+              <div class="mt-5">
+                {!! $statuses->render() !!}
+              </div>
+            @else
+              <p>没有数据！</p>
+            @endif
+          </section>
         </div>
       </div>
     </div>
