@@ -47,6 +47,9 @@ Route::get('password/reset/{token}',  'PasswordController@showResetForm')->name(
 Route::post('password/reset',  'PasswordController@reset')->name('password.update');//对提交过来的 token 和 email 数据进行配对，正确的话更新密码
 
 Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);//微博的创建和删除
+Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');//显示用户关注的人
+Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');//显示用户粉丝
+
 //使用范例
 //Route::group([
 //    'middleware' => ['auth'], // 为这个路由组应用 auth 中间件，确保只有经过身份验证的用户才能访问这些路由
