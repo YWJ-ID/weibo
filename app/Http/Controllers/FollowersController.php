@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class FollowersController extends Controller
@@ -18,7 +19,7 @@ class FollowersController extends Controller
     {
         $this->authorize('follow', $user);//授权
 
-        if ( ! Auth::user()->isFollowing($user->id)) {
+        if (!Auth::user()->isFollowing($user->id)) {
             Auth::user()->follow($user->id);
         }
 
