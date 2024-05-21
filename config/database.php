@@ -45,6 +45,16 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
+//            'read' => [
+//                'host' => env('DB_HOST_READ', '127.0.0.1'),
+//                'username' => env('DB_USERNAME_READ', 'forge'),
+//                'password' => env('DB_PASSWORD_READ', ''),
+//            ],
+//            'write' => [
+//                'host' => env('DB_HOST_WRITE', '127.0.0.1'),
+//                'username' => env('DB_USERNAME_WRITE', 'forge'),
+//                'password' => env('DB_PASSWORD_WRITE', ''),
+//            ],
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
@@ -125,7 +135,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
