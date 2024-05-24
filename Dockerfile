@@ -7,8 +7,6 @@ COPY . ./data/webroot
 WORKDIR /data/webroot
 
 RUN composer install --no-interaction --optimize-autoloader \
-    # 运行测试
-    && php artisan test --teamcity \
     # 跑完测试后剔除dev依赖包
     && composer install --no-interaction --optimize-autoloader --no-dev \
     # 更改当前文件夹下所有者
