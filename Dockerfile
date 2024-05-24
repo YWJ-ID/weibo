@@ -15,6 +15,5 @@ RUN composer install --no-interaction --optimize-autoloader \
     && chown -R application:application . \
     # 容器启动运行应用脚本 \
     && echo "php /data/webroot/artisan migrate --force" >> /opt/docker/provision/entrypoint.d/app.sh \
-    && echo "php /data/webroot/artisan db:seed --class=PermissionSeeder" >> /opt/docker/provision/entrypoint.d/app.sh \
     && echo "php /data/webroot/artisan config:cache" >> /opt/docker/provision/entrypoint.d/app.sh \
     && echo "php /data/webroot/artisan route:cache" >> /opt/docker/provision/entrypoint.d/app.sh
